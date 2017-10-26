@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/lib/com.androidwidgetpoc"
+    android:layout_width="70dp"
+    android:layout_height="75dp"
+    android:gravity="center_horizontal"
+    android:clickable="true"
+    android:orientation="vertical"
+    android:weightSum="1">
+
+    <ImageButton
+        android:id="@+id/add_button"
+        android:layout_width="45dp"
+        android:layout_height="45dp"
+        android:background="@android:color/transparent"
+        android:scaleType="fitCenter"
+        app:srcCompat="@drawable/add" />
+
+</LinearLayout>
