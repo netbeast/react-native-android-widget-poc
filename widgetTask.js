@@ -10,6 +10,7 @@ type TaskInfo = {
 }
 export default async function widgetTask (taskData: TaskInfo) {
   const {id} = taskData || {}
+  console.log('Running widget task')
   synchronizeWidget()
   triggerCharm(id)
 }

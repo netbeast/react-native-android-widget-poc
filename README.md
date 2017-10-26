@@ -13,13 +13,14 @@ It is a bit complicated, and we developed it with 0 knowledge from Android or Ja
 git clone https://github.com/jsdario/react-native-android-widget-poc
 cd react-native-android-widget-poc
 npm install # or yarn install
+react-native link react-native-background-timer # to avoid the main thread
 react-native run-android
 ```
 
 To build your own android widget start from this project as a widget and hack upon or replicate the strategy to make it work.
 
 ### How it works
-:construction: Needs to be filled
+:construction: This chapter is in construction
 
 ### Can I create widgets using React Native instead of Java?
 We haven't done this, but we belive that from this point has to be much easier,
