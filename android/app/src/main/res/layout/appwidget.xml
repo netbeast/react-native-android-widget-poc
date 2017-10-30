@@ -31,7 +31,7 @@
             android:layout_height="match_parent"
             android:gravity="center_vertical"
             android:paddingLeft="5dp"
-            android:text="Charms"
+            android:text="React Native Widget"
             android:textColor="#FCFCFC"
             android:textSize="14sp" />
 
@@ -51,6 +51,6 @@
         android:layout_height="match_parent"
         android:textColor="#FCFCFC"
         android:gravity="center"
-        android:text="Configure your charms" />
+        android:text="Placeholder text" />
 
 </LinearLayout>

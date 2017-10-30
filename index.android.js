@@ -1,7 +1,7 @@
 import { AppRegistry } from 'react-native';
 import App from './App';
-import WidgetTask from './widgetTask';
+import widgetTask from './widgetTask';
 
+AppRegistry.registerHeadlessTask('widgetTask', () => widgetTask);
 AppRegistry.registerComponent('androidWidgetPoc', () => App);
-AppRegistry.registerHeadlessTask('WidgetTask', () => WidgetTask);
 
