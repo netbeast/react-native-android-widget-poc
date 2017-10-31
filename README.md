@@ -18,6 +18,13 @@ react-native link react-native-background-timer # to avoid the main thread
 react-native run-android
 ```
 
+### Demo
+
+<img src="screenshots/listed.png" width="240" />
+<img src="screenshots/enabled.png" width="240" />
+<img src="screenshots/triggering.png" width="240" />
+<img src="screenshots/app.png" width="240" />
+
 To build your own Android Widget, use this project to bootstrap the widget and hack upon or replicate the strategy to make it work.
 
 ## How it works
@@ -25,7 +32,7 @@ It consists in several Android and React Native concepts. Please read with eskep
 * Your React Native app, bundles all the JS, even the one
 corresponding to your widget and services. It is the main [Activity](https://developer.android.com/reference/android/app/Activity.html) of the Android realm.
 * A [WidgetProvider](https://developer.android.com/reference/android/appwidget/AppWidgetProvider.html) is meant to render the view onto your Android desktop and also to listen for the events (button presses) that will be sent to your app. It is then, a Broadcast receiver that can process in Java different intents, before it reaches the JS side.
-* An [Headless JS task](https://facebook.github.io/react-native/docs/headless-js-android.html) is the React Native approach to an Android Service. This part will process the intents (events) coming from your WidgetProvider.
+* A [Headless JS task](https://facebook.github.io/react-native/docs/headless-js-android.html) is the React Native approach to an Android Service. This part will process the intents (events) coming from your WidgetProvider.
 * A custom [Native Module](https://facebook.github.io/react-native/docs/native-modules-android.html) is used to bridge the JS realm with the AppWidgetProvider.
 
 If you take a look at the AndroidManifest.xml you can see how the Android relevant parts are declared to the system:
@@ -73,3 +80,10 @@ We haven't done this, but we belive that from this point has to be much easier,
 having the strategy laid down, we'd need to create [Native UI Components](https://facebook.github.io/react-native/docs/native-components-android.html)
 calling methods from the `RemoteView` class and context instead of the `View` class.
 It is not trivial to us, though.
+
+
+<a href="https://getyeti.co" target="_blank">
+   <img alt="works with yeti" src="screenshots/works-with-yeti.png" width="100" />
+</a>
+
+> This proof of concept is applied at [Yeti Smart Home](https://getyeti.co) and is used in production. Some of the art is also produced at Netbeast. Follow us in Github or [Twitter](https://twitter.com/netbeast_co).
