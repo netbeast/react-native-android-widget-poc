@@ -19,11 +19,12 @@ react-native run-android
 ```
 
 ### Demo
-
+<p float="left">
 <img src="screenshots/listed.png" width="240" />
 <img src="screenshots/enabled.png" width="240" />
 <img src="screenshots/triggering.png" width="240" />
 <img src="screenshots/app.png" width="240" />
+</p>
 
 To build your own Android Widget, use this project to bootstrap the widget and hack upon or replicate the strategy to make it work.
 
