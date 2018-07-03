@@ -1,29 +1,45 @@
 package com.androidwidgetpoc;
 
 import android.app.Notification;
+import android.app.NotificationChannel;
+import android.app.NotificationManager;
 import android.app.PendingIntent;
-import android.content.Context;
 import android.content.Intent;
+import android.os.Build;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
-
-import android.support.v4.app.NotificationCompat;
-import android.util.Log;
 
 import com.facebook.react.HeadlessJsTaskService;
 import com.facebook.react.bridge.Arguments;
 import com.facebook.react.jstasks.HeadlessJsTaskConfig;
 
+import android.support.v4.app.NotificationCompat;
+
 public class BackgroundTask extends HeadlessJsTaskService {
+
+    private final int NOTIFICATION_ID = 12345678;
+    private final String CHANNEL_ID = "channel_id";
 
     @Override
     protected @Nullable
     HeadlessJsTaskConfig getTaskConfig(Intent intent) {
+        NotificationManager notificationManager = getSystemService(NotificationManager.class);
         /*
         * This is run inside onStartCommand
         * */
-        startForeground(12345678, getNotification(intent));
-        // startForeground(intent, getNotification(intent));
+        // Android O requires a Notification Channel.
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+            CharSequence name = "channel name";
+            // Create the channel for the notification
+            NotificationChannel mChannel =
+                    new NotificationChannel(CHANNEL_ID, name, NotificationManager.IMPORTANCE_DEFAULT);
+
+            // Set the Notification Channel for the Notification Manager.
+            notificationManager.createNotificationChannel(mChannel);
+            // notificationManager.startServiceInForeground(intent, NOTIFICATION_ID, getNotification());
+        }
+
+        startForeground(NOTIFICATION_ID, getNotification());
 
         Bundle extras = intent.getExtras();
         return new HeadlessJsTaskConfig(
@@ -32,21 +48,8 @@ public class BackgroundTask extends HeadlessJsTaskService {
                 10000);
     }
 
-    private Notification getNotification(Intent intent) {
-
-        // The PendingIntent that leads to a call to onStartCommand() in this service.
-        PendingIntent servicePendingIntent = PendingIntent.getService(this, 0, intent,
-                PendingIntent.FLAG_UPDATE_CURRENT);
-
-        // The PendingIntent to launch activity.
-        PendingIntent activityPendingIntent = PendingIntent.getActivity(this, 0,
-                new Intent(this, MainActivity.class), 0);
-
+    private Notification getNotification() {
         NotificationCompat.Builder builder = new NotificationCompat.Builder(this)
-                .addAction(R.drawable.favicon_white, "Hola caracola",
-                        activityPendingIntent)
-                .addAction(R.drawable.add, "Adios caracol",
-                        servicePendingIntent)
                 .setContentText("Some text")
                 .setContentTitle("Some title")
                 .setOngoing(true)
@@ -62,5 +65,4 @@ public class BackgroundTask extends HeadlessJsTaskService {
 
         return builder.build();
     }
-
 }
