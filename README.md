@@ -14,7 +14,6 @@ from react-native.
 git clone https://github.com/jsdario/react-native-android-widget-poc
 cd react-native-android-widget-poc
 npm install # or yarn install
-react-native link react-native-background-timer # to avoid the main thread
 react-native run-android
 ```
 
