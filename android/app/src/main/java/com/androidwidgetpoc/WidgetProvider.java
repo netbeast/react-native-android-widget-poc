@@ -31,9 +31,6 @@ public class WidgetProvider extends AppWidgetProvider {
             return;
         }
 
-        Intent silentStartIntent = new Intent(context, BackgroundTask.class);
-        context.startService(silentStartIntent);
-
         /*
         * Proxy bundle extras towards the service
         * */

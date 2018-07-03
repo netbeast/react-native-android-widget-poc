@@ -3,7 +3,6 @@
 */
 
 import { NativeModules, ToastAndroid } from 'react-native'
-import bgTimer from 'react-native-background-timer'
 
 const { BackgroundTaskBridge } = NativeModules
 
@@ -23,12 +22,16 @@ const charms = [
 type TaskInfo = {
   id: string,
 }
-export default async function widgetTask (taskData: TaskInfo) {
-  const {id} = taskData || {}
-  bgTimer.setTimeout(() => {
-    synchronizeWidget()
-    triggerCharm(id)
-  }, 0)
+export default function widgetTask (taskData: TaskInfo) {
+  synchronizeWidget()
+  triggerCharm(taskData.id)
+
+  return new Promise(resolve => {
+    setTimeout(() => {
+        ToastAndroid.show(`FINISHING 🚬 ...`, ToastAndroid.SHORT);
+        resolve()
+    }, 8000) 
+  })
 }
 
 export function synchronizeWidget () {
