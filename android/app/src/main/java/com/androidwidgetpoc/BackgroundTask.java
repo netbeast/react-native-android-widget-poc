@@ -37,9 +37,10 @@ public class BackgroundTask extends HeadlessJsTaskService {
             // Set the Notification Channel for the Notification Manager.
             notificationManager.createNotificationChannel(mChannel);
             // notificationManager.startServiceInForeground(intent, NOTIFICATION_ID, getNotification());
+            startForegroundService(NOTIFICATION_ID, getNotification());
+        } else {
+            startForeground(NOTIFICATION_ID, getNotification());
         }
-
-        startForeground(NOTIFICATION_ID, getNotification());
 
         Bundle extras = intent.getExtras();
         return new HeadlessJsTaskConfig(
