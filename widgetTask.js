@@ -24,11 +24,14 @@ type TaskInfo = {
 }
 export default function widgetTask (taskData: TaskInfo) {
   synchronizeWidget()
-  triggerCharm(taskData.id)
+  if (taskData && taskData.id) {
+    triggerCharm(taskData.id)
+  }
 
   return new Promise(resolve => {
     setTimeout(() => {
         ToastAndroid.show(`FINISHING 🚬 ...`, ToastAndroid.SHORT);
+        synchronizeWidget()
         resolve()
     }, 8000) 
   })

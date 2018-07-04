@@ -3,6 +3,7 @@ package com.androidwidgetpoc;
 import android.appwidget.AppWidgetProvider;
 import android.content.Context;
 import android.content.Intent;
+import android.os.Build;
 import android.util.Log;
 
 import com.facebook.react.HeadlessJsTaskService;
@@ -17,9 +18,8 @@ public class WidgetProvider extends AppWidgetProvider {
 
     @Override
     public void onEnabled(Context context) {
-        Log.d("WIDGET_PROVIDER", "En onEnabled");
-        Intent serviceIntent = new Intent(context, BackgroundTask.class);
-        context.startService(serviceIntent);
+        Intent intent = new Intent(context, BackgroundTask.class);
+        startServiceAfterSdkVersion(context, intent);
         HeadlessJsTaskService.acquireWakeLockNow(context);
     }
 
@@ -36,6 +36,14 @@ public class WidgetProvider extends AppWidgetProvider {
         * */
         Intent serviceIntent = new Intent(context, BackgroundTask.class);
         serviceIntent.putExtras(incomingIntent);
-        context.startService(serviceIntent);
+        startServiceAfterSdkVersion(context, serviceIntent);
+    }
+
+    public void startServiceAfterSdkVersion (Context context, Intent intent) {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+            context.startForegroundService(intent);
+        } else {
+            context.startService(intent);
+        }
     }
 }

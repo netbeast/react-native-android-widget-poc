@@ -96,7 +96,7 @@ public class BackgroundTaskBridge extends ReactContextBaseJavaModule {
     }
 
     private void registerTask(String action, ReadableMap charm, RemoteViews widgetView, Integer button) {
-        Intent intent = new Intent();
+        Intent intent = new Intent(getReactApplicationContext(), WidgetProvider.class);
         intent.putExtra("id", charm.getString("id"));
         intent.setAction(action);
         PendingIntent pendingIntent = PendingIntent.getBroadcast(this.getReactApplicationContext(), 0, intent, PendingIntent.FLAG_CANCEL_CURRENT);
